@@ -3,11 +3,13 @@
 <head>
 {{--            FOR BACKGROUD IMAGE             --}}
     <style>
-        body {
-            background-image: url("https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/04/colortheory.jpg");
+        /*body {*/
+            /*background-image: url("https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/04/colortheory.jpg");*/
 
-        }
+        /*}*/
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    {{--<link rel="icon" href="http://www.robweber.co.uk/images/r_favicon_black.jpg">--}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,6 +63,8 @@
                             <li><a href="{{ url('access/') }}">Access Rights</a></li>
                             <li><a href="{{ url('party/') }}">Party</a></li>
                             <li><a href="{{ url('salesmen/') }}">Salesmen</a></li>
+                            <li><a href="{{ url('stock/') }}">Stock</a></li>
+                            <li><a href="{{ url('order/') }}">Order</a></li>
                         @endif
                         {{--@if(Auth::user())--}}
                         {{--&nbsp;<li><a href="{{ url('users/') }}">USER</a></li>--}}
@@ -100,6 +104,10 @@
                 </div>
             </div>
         </nav>
+
+
+
+
 
         @yield('content')
     </div>

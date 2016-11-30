@@ -16,7 +16,7 @@ class CreatePartiesTable extends Migration
         Schema::create('parties', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('salesmen_id');
+            $table->integer('salesmen_id')->unsigned();
             $table->string('area');
             $table->string('address');
             $table->string('fax')->nullable();
@@ -24,7 +24,7 @@ class CreatePartiesTable extends Migration
             $table->integer('balance');
             $table->integer('credit_limit');
             $table->string('day');
-            //$table->foreign('salesmens_id')->references('id')->on('salesmens')->onDelete('cascade');
+            $table->foreign('salesmen_id')->references('id')->on('salesmens')->onDelete('cascade');
             $table->timestamps();
         });
     }

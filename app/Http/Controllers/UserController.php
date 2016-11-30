@@ -72,7 +72,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('users.update',compact('user'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *

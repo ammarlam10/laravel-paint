@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Page;
-use App\User;
-//use App\Page;
+use App\Stock;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class PageAccessController extends Controller
+class StockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,16 +21,10 @@ class PageAccessController extends Controller
     }
 
 
-
     public function index()
     {
-        $users = User::all();
-//        foreach ($users as $user){
-//        foreach($user->pages as $page){
-//         echo $page->name;
-//        }
-    //}
-     return view('access.index',compact('users'));
+        $stocks = Stock::all();
+        return view('stock.index',compact('stocks'));
     }
 
     /**
@@ -43,15 +34,7 @@ class PageAccessController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $pages = Page::all();
-//        foreach ($users as $user) {
-//            $user->pages()->attach(7);
-//        }
-//        return redirect('/access');
-
-       return view('access.create',compact(['users','pages']));
-
+        //
     }
 
     /**
@@ -62,15 +45,7 @@ class PageAccessController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'pid' => 'required|exists:pages,id',
-            'uid'=> 'required|exists:users,id',
-
-        ]);
-
-       User::find($request->uid)->pages()->attach($request->pid);
-        //detach
-        return redirect('/access');
+        //
     }
 
     /**
@@ -81,8 +56,7 @@ class PageAccessController extends Controller
      */
     public function show($id)
     {
-        $page = User::findOrFail($id);
-        return view('access.update',compact('page'));
+        //
     }
 
     /**
@@ -105,19 +79,7 @@ class PageAccessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'nid' => 'required|exists:pages,id',
-            'oid' => 'required|exists:pages,id',
-            'uid'=> 'required|exists:users,id',
-
-        ]);
-
-        $user=User::find($request->uid);
-
-        $user->pages()->attach($request->nid);
-        $user->pages()->detach($request->oid);
-        return redirect('/access');
-
+        //
     }
 
     /**
@@ -128,7 +90,6 @@ class PageAccessController extends Controller
      */
     public function destroy($id)
     {
-
-        //$user->pages()->detach();
+        //
     }
 }

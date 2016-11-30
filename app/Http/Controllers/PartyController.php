@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Party;
+use App\Stock;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -23,6 +24,7 @@ class PartyController extends Controller
 
     public function index()
     {
+
         $party = Party::all();
         return view('party.index',compact('party'));
     }
@@ -49,7 +51,7 @@ class PartyController extends Controller
             'mobile'=> ['numeric','required','regex:/(03)[0-9]{9}/'],
             'balance'=>'numeric|required',
             'credit_limit'=>'numeric|required',
-            'sale_id'=>'exists:salesmens,id'
+            'sale_id'=>'required|exists:salesmens,id'
 
         ]);
 

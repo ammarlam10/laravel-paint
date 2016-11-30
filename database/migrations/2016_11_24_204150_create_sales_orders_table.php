@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserPageTable extends Migration
+class CreateSalesOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUserPageTable extends Migration
      */
     public function up()
     {
-        Schema::create('page_user', function (Blueprint $table) {
+        Schema::create('sales_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('page_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
+            $table->integer('total');
+            $table->date('sdate');
+            $table->date('ddate')->nullable();
+            $table->integer('party_id')->unsigned();
+            $table->foreign('party_id')->references('id')->on('parties')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateUserPageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('page_user');
+        Schema::dropIfExists('sales_orders');
     }
 }

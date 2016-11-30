@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Page;
+use App\Party;
+use App\Pay;
 use App\User;
-//use App\Page;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class PageAccessController extends Controller
+class PayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,17 +23,12 @@ class PageAccessController extends Controller
         $this->middleware('isAdmin');
     }
 
-
-
     public function index()
     {
-        $users = User::all();
-//        foreach ($users as $user){
-//        foreach($user->pages as $page){
-//         echo $page->name;
-//        }
-    //}
-     return view('access.index',compact('users'));
+         $party = Party::all();
+//      return $orders->foo;
+        //return 'whay';
+        return view('payment.create', compact('party'));
     }
 
     /**
@@ -43,14 +38,6 @@ class PageAccessController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $pages = Page::all();
-//        foreach ($users as $user) {
-//            $user->pages()->attach(7);
-//        }
-//        return redirect('/access');
-
-       return view('access.create',compact(['users','pages']));
 
     }
 
@@ -62,15 +49,13 @@ class PageAccessController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'pid' => 'required|exists:pages,id',
-            'uid'=> 'required|exists:users,id',
-
-        ]);
-
-       User::find($request->uid)->pages()->attach($request->pid);
-        //detach
-        return redirect('/access');
+        $so = Pay::create(['total'=>'0','pdate'=>Carbon::now(),'party_id'=>$request->input('pid'),'token'=>$request->token,'cash'=>$request->cash,'cheque'=>$request->cheque]);
+        $so->total = $so->cash + $so->token+$so->cheque ;
+        $so->save();
+        $party= Party::find($request->input('pid'));
+        $party->balance = $party->balance - $so->total;
+        $party->save();
+        return redirect('/party');
     }
 
     /**
@@ -81,8 +66,7 @@ class PageAccessController extends Controller
      */
     public function show($id)
     {
-        $page = User::findOrFail($id);
-        return view('access.update',compact('page'));
+
     }
 
     /**
@@ -105,19 +89,7 @@ class PageAccessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'nid' => 'required|exists:pages,id',
-            'oid' => 'required|exists:pages,id',
-            'uid'=> 'required|exists:users,id',
-
-        ]);
-
-        $user=User::find($request->uid);
-
-        $user->pages()->attach($request->nid);
-        $user->pages()->detach($request->oid);
-        return redirect('/access');
-
+        //
     }
 
     /**
@@ -128,7 +100,6 @@ class PageAccessController extends Controller
      */
     public function destroy($id)
     {
-
-        //$user->pages()->detach();
+        //
     }
 }

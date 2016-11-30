@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+        <style>
+            body {
+                background-image: url("https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/04/colortheory.jpg");
+
+            }
+        </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +21,7 @@
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                color: #f9f2f4;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -71,6 +78,10 @@
                     <a href="{{ url('/login') }}">Login</a>
                 </div>
             @endif
+
+                <div class="top-right links">
+                    <a href="{{ url('/register') }}">Login</a>
+                </div>
 
             <div class="content">
                 <div class="title m-b-md">

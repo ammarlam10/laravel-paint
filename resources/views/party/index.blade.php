@@ -22,6 +22,7 @@
                                 <th>Day</th>
                                 <th>Fax</th>
                                 <th>Mobile</th>
+                                {{--<th>Sales orders</th>--}}
                                 <th>Salesman</th>
                             </tr>
                             </thead>
@@ -38,7 +39,11 @@
                                     <td>{{$sale->day}}</td>
                                     <td>{{$sale->fax}}</td>
                                     <td>{{$sale->mobile}}</td>
-                                    <td>{{  $sale->salesmen->name}}  </td>  {{--FOR PARTY ACCESS ITS SALESMEN NAME--}}
+                                    {{--<td> @foreach($sale->sales_order as $order)        {{$order->total }}  ,      @endforeach  </td>--}}
+                                    <td>{{  $sale->salesmen->name}}  </td>
+                                    {{--<td><a href="{{route('payment.show',$sale->id)}}" class="btn-sm btn-primary">delivered</a></td>--}}
+
+                                    {{--FOR PARTY ACCESS ITS SALESMEN NAME--}}
                                     {{--@if($sale->cell_other = ''){{ $sale->cell_other}} @endif--}}
                                 </tr>
                             @endforeach

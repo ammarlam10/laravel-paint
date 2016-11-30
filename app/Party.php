@@ -15,4 +15,16 @@ class Party extends Model
 
         return $this->belongsTo('App\Salesmen');
     }
+
+    public function sales_order(){
+
+        return $this->hasMany('App\Sales_order');
+    }
+
+    public function payment(){
+
+        return $this->hasMany('App\Pay');
+    }
 }
+
+
