@@ -28,6 +28,20 @@
                                     <td>{{$order->ddate}} </td>
                                     <td><a href="{{route('order.show',$order->id)}}" class="btn-sm btn-primary">delivered</a></td>
                                     <td><a href="{{route('return.show',$order->party->id)}}" class="btn-sm btn-primary">Return</a></td>
+                                    <td>
+                                        <form  method="post" action="/order/{{$order->id}}">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <div>
+                                            <div >
+                                                <input type="submit" value="delete"  class = 'btn-xs btn-primary'>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </td>
+                                    <td > <a style="color: #096e9c" href="{{route('order', ['id' => $order->id])}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+
 
                                 </tr>
                             @endforeach

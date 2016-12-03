@@ -22,8 +22,12 @@
                                 <tr>
                                     {{--<th scope="row">1</th>--}}
                                     <td>{{$order->id}}</td>
-                                    <td> {{$order->sdate}}</td>
-                                    <td>{{$order->ddate}} </td>
+                                    <td>{{$order->sdate}} </td>
+                                    @if($order->ddate!=null)
+                                        <td> {{$order->ddate}}</td>
+                                    @else
+                                        <td> Not delivered </td>
+                                    @endif
                                     {{--<td><a href="{{route('order.show',$order->id)}}" class="btn-sm btn-primary">delivered</a></td>--}}
                                     @if($order->ddate!=null)
                                     <td><a href="{{route('return.edit',$order->id)}}" class="btn-sm btn-primary">Return</a></td>

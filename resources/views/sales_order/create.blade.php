@@ -3,12 +3,19 @@
 
 @section('content')
 
-<div class="container">
+<div @if($message!=null) class="container has-error" @else class="container" @endif >
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Sales Order00</div>
+                    <div class="panel-heading">Sales Order</div>
+
                     <div class="panel-body">
+                        @if ($message!=null)
+                            <span class="help-block">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @endif
     {!! Form::open(array('route' => 'order.store','method'=>'POST','id' => 'jeform')) !!}
     <div class="row">
 
@@ -84,7 +91,7 @@
                 {!!Form::text('jel_label[]',null,['class' => 'form-control','placeholder' => 'Quantity','required' => 'required'])!!}
             </div>
             <div class='col-xs-3 es'>
-                {!!Form::text('jel_coa_id[]',null,['class' => 'form-control','placeholder' => 'Discount','required' => 'required'])!!}
+                {!!Form::text('jel_coa_id[]',0,['class' => 'form-control','placeholder' => 'Discount','required' => 'required'])!!}
             </div>
 
         </div>
@@ -118,7 +125,7 @@
             {!!Form::text('jel_label[]',null,['class' => 'form-control','placeholder' => 'Quantity','required' => 'required'])!!}
         </div>
         <div class='col-xs-3 es'>
-            {!!Form::text('jel_coa_id[]',null,['class' => 'form-control','placeholder' => 'Discount','required' => 'required'])!!}
+            {!!Form::text('jel_coa_id[]',0,['class' => 'form-control','placeholder' => 'Discount','required' => 'required'])!!}
         </div>
         {{--<div class='col-xs-3 ea'>--}}
             {{--{!!Form::text('jel_e_a_id[]',null,['class' => 'form-control','placeholder' => 'Entry Against'])!!}--}}

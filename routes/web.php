@@ -58,6 +58,14 @@ Route::resource('/order','SalesController');
 Route::resource('/return','ReturnController');
 Route::resource('/payment','payController');
 
+Route::get('/order/report/{id}', function ($id) {
+$order = \App\Sales_order::find($id);
+
+    return view('reports.order',compact('order'));
+})->name('order');
+
+
+
 
 //
 //Route::get('/try', function () {

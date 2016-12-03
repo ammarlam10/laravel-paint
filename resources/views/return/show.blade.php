@@ -23,8 +23,8 @@
                                 <tr>
                                     {{--<th scope="row">1</th>--}}
                                     <td>{{$r->id}}</td>
-                                    <td>{{$r->total}}</td>
                                     <td> {{$r->rdate}}</td>
+                                    <td>{{$r->total}}</td>
                                     <td>{{$r->party->name}} </td>
                                     </tr>
                             @endforeach

@@ -49,6 +49,13 @@ class PayController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'token' => 'numeric',
+            'cash'=> 'numeric',
+            'cheque'=> 'numeric',
+
+
+        ]);
         $so = Pay::create(['total'=>'0','pdate'=>Carbon::now(),'party_id'=>$request->input('pid'),'token'=>$request->token,'cash'=>$request->cash,'cheque'=>$request->cheque]);
         $so->total = $so->cash + $so->token+$so->cheque ;
         $so->save();

@@ -8,8 +8,10 @@ use App\Sales_order;
 use App\Stock;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Validator;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class ReturnController extends Controller
@@ -43,6 +45,17 @@ class ReturnController extends Controller
      */
     public function store(Request $request)
     {
+        $validaters = Validator::make($request->all(), [
+            'qty.*' => 'numeric',
+            'discount.*' => 'numeric',
+
+        ]);
+        if($validaters->fails()){
+            return back();
+//                ->withErrors($validaters)
+//                ->withInput();
+            // return redirect('order/create')->withErrors($validator);
+        }
         $gr = Goods_return::create(['total'=>'0','rdate'=>Carbon::now(),'party_id'=>$request->input('pid')]);
         // return $so;
         //return $gr;
@@ -52,6 +65,8 @@ class ReturnController extends Controller
         $i =0;
         $total = 0;
         $j=0;
+        $pt = Party::find($request->input('pid'));
+
         foreach($disc as $it ) { $disc[$j] =  1 - ($disc[$j]/100) ; $j++; }
         //return $disc;
         foreach ($item as $it ){
@@ -63,9 +78,11 @@ class ReturnController extends Controller
             // getting total for order
             $total=$total + $rate*$quantity[$i]*$disc[$i];
             // making relation
-            $gr->stock()->attach($it, ['quantity' => $quantity[$i],'discount' => $disc[$i]]);
+            $gr->stock()->attach($it, ['quantity' => $quantity[$i],'discount' => ((1-$disc[$i])*100)]);
             $i++;
         }
+        $pt->balance = $pt->balance - $total;
+        $pt->save();
         $gr->total = $total;
         $gr->save();
         return  redirect('/return');
