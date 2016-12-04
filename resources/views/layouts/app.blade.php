@@ -67,6 +67,7 @@
                             <li><a href="{{ url('salesmen/') }}">Salesmen</a></li>
                             <li><a href="{{ url('stock/') }}">Stock</a></li>
                             <li><a href="{{ url('order/') }}">Order</a></li>
+                            <li><a href="{{ url('payment/') }}">Payment</a></li>
                         @endif
                         {{--@if(Auth::user())--}}
                         {{--&nbsp;<li><a href="{{ url('users/') }}">USER</a></li>--}}

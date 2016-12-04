@@ -9,6 +9,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">All Sales Orders</div>
                     <div class="panel-body">
+                        {{--<a  href="{{route('order_gp')}}" class="btn-sm btn-success">Group Report</a>--}}
+                        {{--<td > <a style="color: #096e9c" href="{{route('order', ['id' => $order->id])}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>--}}
+
                         <table class="table">
                             <thead class="thead-inverse">
                             <tr>

@@ -26,7 +26,9 @@
                                     <td> {{$r->rdate}}</td>
                                     <td>{{$r->total}}</td>
                                     <td>{{$r->party->name}} </td>
-                                    </tr>
+                                    <td > <a style="color: #096e9c" href="{{route('return', ['id' => $r->id])}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+
+                                </tr>
                             @endforeach
 
                             </tbody>

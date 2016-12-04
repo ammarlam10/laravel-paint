@@ -7,7 +7,7 @@
                     <div class="panel-heading">All Salesmen</div>
                     <div class="panel-body">
 
-
+{{--                        <a href="{{route('route', ['id' => 1])}}" > Sales route</a>--}}
 
                         <table class="table">
                             <thead class="thead-inverse">

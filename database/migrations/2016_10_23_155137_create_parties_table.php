@@ -22,6 +22,7 @@ class CreatePartiesTable extends Migration
             $table->string('fax')->nullable();
             $table->string('mobile');
             $table->integer('balance');
+            $table->integer('open_balance');
             $table->integer('credit_limit');
             $table->string('day');
             $table->foreign('salesmen_id')->references('id')->on('salesmens')->onDelete('cascade');

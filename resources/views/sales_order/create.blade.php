@@ -81,7 +81,7 @@
 
                 <select class="form-control" name="jel_reference[]">
                     @foreach($stock as $st)
-                        <option value="{{$st->id}}">{{$st->type." ".$st->brand." ".$st->shade." "}}</option>
+                        <option value="{{$st->id}}">{{$st->type." ".$st->brand." ".$st->shade." ".$st->pack_size}}</option>
                     @endforeach
                 </select>
 
@@ -116,7 +116,7 @@
 
             <select class="form-control" name="jel_reference[]">
                 @foreach($stock as $st)
-                    <option value="{{$st->id}}">{{$st->type." ".$st->brand." ".$st->shade." "}}</option>
+                    <option value="{{$st->id}}">{{$st->type." ".$st->brand." ".$st->shade." ".$st->pack_size}}</option>
                 @endforeach
             </select>
 

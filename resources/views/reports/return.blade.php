@@ -10,7 +10,7 @@
     }
 </style>
 <head>
-    <h1>SALES ORDER</h1>
+    <h1>GOODS RETURN</h1>
     <h2></h2>
     <hr>
     <br>
@@ -23,10 +23,10 @@
 
 {{--@foreach($orders as $po)--}}
 
-    <p><strong>SALES ORDER ID:</strong> {{$orders->id}}</p>
-    <p><strong>PARTY:</strong> {{$orders->party->name}}</p>
-    <p><strong>TOTAL:</strong> {{$orders->total}}</p>
-    <p><strong>DATE:</strong> {{$orders->sdate}}</p>
+<p><strong>SALES ORDER ID:</strong> {{$orders->id}}</p>
+<p><strong>PARTY:</strong> {{$orders->party->name}}</p>
+<p><strong>TOTAL:</strong> {{$orders->total}}</p>
+<p><strong>DATE:</strong> {{$orders->rdate}}</p>
 
 {{--@endforeach--}}
 
@@ -49,7 +49,7 @@
     @php($i=1)
     @foreach($orders->stock as $pos)
         <tr>
-             <td>{{$i++}}</td>
+            <td>{{$i++}}</td>
             <td>{{$pos->type." ".$pos->brand." ".$pos->shade." "}}</td>
             <td>{{$pos->pivot->quantity}}</td>
             <td>{{$pos->rate}}</td>

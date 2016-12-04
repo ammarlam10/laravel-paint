@@ -115,6 +115,23 @@
                                 </div>
                             </div>
 
+                            {{--*********************OPENING BALANCE*************************--}}
+
+
+                            <div class="form-group{{ $errors->has('open_balance') ? ' has-error' : '' }}">
+                                <label for="balance" class="col-md-4 control-label">Opening Balance</label>
+
+                                <div class="col-md-6">
+                                    <input id="open_balance" type="text" class="form-control" name="open_balance" value="{{ old('open_balance') }}" required>
+
+                                    @if ($errors->has('open_balance'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('open_balance') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
 
                             {{--*********************Credit_limit*************************--}}
 

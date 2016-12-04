@@ -50,6 +50,7 @@ class PartyController extends Controller
         $this->validate($request,[
             'mobile'=> ['numeric','required','regex:/(03)[0-9]{9}/'],
             'balance'=>'numeric|required',
+            'open_balance'=>'numeric|required',
             'credit_limit'=>'numeric|required',
             'sale_id'=>'required|exists:salesmens,id'
 
@@ -59,7 +60,7 @@ class PartyController extends Controller
 
         Party::create([
             'name'=>$request->name,'area'=>$request->area,'address'=>$request->address,
-            'fax'=>$request->fax,'mobile'=>$request->mobile,'balance'=>$request->balance,
+            'fax'=>$request->fax,'mobile'=>$request->mobile,'balance'=>$request->balance,'open_balance'=>$request->open_balance,
             'credit_limit'=>$request->credit_limit,'day'=>$request->day, 'salesmen_id'=>$request->sale_id,
 
          ]);
@@ -102,6 +103,7 @@ class PartyController extends Controller
         $this->validate($request,[
             'mobile'=> ['required','regex:/(03)[0-9]{9}/'],
             'balance'=>'numeric|required',
+            'open_balance'=>'numeric|required',
             'credit_limit'=>'numeric|required',
             'sale_id'=>'exists:salesmens,id'
             //'sale_id'=>'exists:salesmens,id',
@@ -114,7 +116,7 @@ class PartyController extends Controller
 
        $party->update([
             'name'=>$request->name,'area'=>$request->area,'address'=>$request->address,
-            'fax'=>$request->fax,'mobile'=>$request->mobile,'balance'=>$request->balance,
+            'fax'=>$request->fax,'mobile'=>$request->mobile,'balance'=>$request->balance,'open_balance'=>$request->open_balance,
             'credit_limit'=>$request->credit_limit,'day'=>$request->day,'salesmen_id'=>$request->sale_id,
 
         ]);

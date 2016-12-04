@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Party extends Model
 {
     protected $fillable = [
-        'name', 'area', 'address','salesmen_id', 'balance', 'credit_limit' ,'day' , 'fax','mobile'
+        'name', 'area', 'address','salesmen_id', 'balance','open_balance', 'credit_limit' ,'day' , 'fax','mobile'
     ];
 
 

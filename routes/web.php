@@ -17,6 +17,9 @@ use App\Salesmen;
 use App\User;
 use App\Page;
 use App\Stock;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\App;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -59,22 +62,44 @@ Route::resource('/return','ReturnController');
 Route::resource('/payment','payController');
 
 Route::get('/order/report/{id}', function ($id) {
-$order = \App\Sales_order::find($id);
-
-    return view('reports.order',compact('order'));
+$orders = \App\Sales_order::findOrFail($id);
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadView('reports.order',compact('orders'));
+    return $pdf->stream();
 })->name('order');
 
 
+//Route::get('/order/reports/', function () {
+//    return 'asdad';
+////    $orders = \App\Sales_order::all();
+////    $pdf = App::make('dompdf.wrapper');
+////    $pdf->loadView('reports.order_gp',compact('orders'));
+////    return $pdf->stream();
+//})->name('order_gp');
 
 
-//
-//Route::get('/try', function () {
-//    $order = Goods_return::find(2);
-//
-//$a =$order->stock;
-//    foreach ($a as $aa){
-//        return $aa->pivot;
-//   }
-//
-//
-//});
+Route::get('/return/report/{id}', function ($id) {
+    $orders = \App\Goods_return::findOrFail($id);
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadView('reports.return',compact('orders'));
+    return $pdf->stream();
+})->name('return');
+
+
+
+Route::get('/party/report/{id}', function ($id) {
+    $party = \App\Party::findOrFail($id);
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadView('reports.sales_ledger',compact('party'));
+    return $pdf->stream();
+})->name('sales_ledger');
+
+Route::get('/salesmen/report/{id}', function ($id) {
+//    return 'asd';
+    $sm = Salesmen::all();
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadView('reports.route',compact('sm'));
+    return $pdf->stream();
+})->name('route');
+
+
